@@ -97,62 +97,94 @@
             50% { transform: translate(40px, 30px); }
         }
 
-        /* Header */
-        .header {
+        /* Header - barre en pilule avec halo rouge */
+        .header-wrap {
             position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 48px);
-            max-width: 920px;
-            height: 56px;
-            background: rgba(12,12,18,0.65);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(70,0,0,0.2);
-            border-radius: 16px;
+            top: 24px;
+            left: 0;
+            right: 0;
             z-index: 1000;
             display: flex;
+            justify-content: center;
+            padding: 0 16px;
+            pointer-events: none;
+        }
+        .header {
+            position: relative;
+            pointer-events: auto;
+            width: 100%;
+            max-width: 1024px;
+            min-height: 52px;
+            background: rgba(10,10,15,0.6);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 9999px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.36);
+            display: flex;
             align-items: center;
-            padding: 0 8px 0 22px;
+            padding: 8px 8px 8px 24px;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.05);
+            pointer-events: none;
         }
         .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
         .header-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 700;
+            gap: 12px;
+            font-weight: 600;
             font-size: 1.05rem;
             letter-spacing: -0.3px;
             color: #fff;
+            flex-shrink: 0;
         }
+        .header-logo:hover { color: #e5e7eb; }
         .header-logo img {
-            width: 36px;
-            height: 36px;
+            width: 28px;
+            height: 28px;
             object-fit: contain;
+            transition: transform 0.3s;
         }
+        .header-logo:hover img { transform: scale(1.1); }
         .header-nav { display: flex; align-items: center; gap: 4px; }
         .header-nav a {
-            color: #999;
-            font-size: 0.85rem;
-            padding: 7px 16px;
-            border-radius: 10px;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            padding: 8px 16px;
+            border-radius: 9999px;
             transition: all 0.25s;
             font-weight: 500;
         }
-        .header-nav a:hover { color: #ddd; background: rgba(70,0,0,0.15); }
-        .header-nav a.active { color: #ddd; background: rgba(70,0,0,0.2); }
+        .header-nav a:hover { color: #fff; background: rgba(255,255,255,0.04); }
+        .header-nav a.active { color: #fff; background: rgba(255,255,255,0.08); }
         .status-badge {
-            padding: 7px 16px;
-            border-radius: 10px;
-            background: rgba(70,0,0,0.15);
-            border: 1px solid rgba(70,0,0,0.3);
-            color: #c41e1e;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            background: rgba(196,30,30,0.15);
+            border: 1px solid rgba(196,30,30,0.5);
+            color: #e63946;
             font-size: 0.78rem;
             font-weight: 600;
             letter-spacing: 0.3px;
@@ -162,7 +194,7 @@
         }
         .status-badge .pulse {
             width: 6px; height: 6px;
-            background: #c41e1e;
+            background: #e63946;
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
@@ -930,24 +962,26 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="header-inner">
-            <a href="/" class="header-logo">
-                <img src="logo.png" alt="SpiderC2 BotNet/C2">
-                <span>SpiderC2</span>
-            </a>
-            <nav class="header-nav">
-                <a href="#presentation">Presentation</a>
-                <a href="#terminal">Terminal</a>
-                <a href="https://t.me/spiderrc2" target="_blank">Telegram</a>
-            </nav>
-            <div class="status-badge">
-                <span class="pulse"></span>
-                Operational
+    <!-- Header (barre en pilule) -->
+    <div class="header-wrap">
+        <header class="header">
+            <div class="header-inner">
+                <a href="/" class="header-logo">
+                    <img src="logo.png" alt="SpiderC2 BotNet/C2">
+                    <span>SpiderC2</span>
+                </a>
+                <nav class="header-nav">
+                    <a href="#presentation">Presentation</a>
+                    <a href="#terminal">Terminal</a>
+                    <a href="https://t.me/spiderrc2" target="_blank">Telegram</a>
+                </nav>
+                <div class="status-badge">
+                    <span class="pulse"></span>
+                    Operational
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
